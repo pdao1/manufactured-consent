@@ -1,0 +1,14 @@
+---
+const today = new Date();
+import {SITE_TITLE_DOMAIN} from '../consts'
+---
+
+<footer>
+	&copy; {today.getFullYear()} <strong>{SITE_TITLE_DOMAIN}</strong>.  All rights reserved.
+</footer>
+<style>
+	footer {
+		padding: 25px;
+		text-align: center;
+	}
+</style>
