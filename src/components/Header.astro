@@ -5,7 +5,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <div id="overlay"></div>
 <header>
 <div class="navbar">
-  <div class="navbar-start">
+	<div class="navbar-start">
     <div class="dropdown">
       <label tabindex="0" class="btn btn-ghost lg:hidden" id="mobile-menu-btn">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -20,8 +20,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<li><HeaderLink href="/resources">Resources</HeaderLink></li>
         <li>
 				<details>
-					  <summary>Parent</summary>
           <ul class="p-2">
+					 <summary>Topics</summary>
             <li><HeaderLink href="/blog">Blog</HeaderLink></li>
             <li><HeaderLink href="/blog">Blog</HeaderLink></li>
           </ul>
@@ -30,31 +30,30 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
       </ul>
     </div>
   </div>
-
-
   <div class="navbar-start hidden lg:flex">
     <ul class="menu-horizontal px-1">
 		<li><HeaderLink href="/">Home</HeaderLink></li>
 		<li><HeaderLink href="/blog">Blog</HeaderLink></li>
-		<li>	<HeaderLink href="/issues"><u>Issues</u></HeaderLink></li>
-			<li><HeaderLink href="/facts"><u>Hypocrisy</u></HeaderLink></li>
-			<li><HeaderLink href="/facts"><u>Propaganda Machine</u></HeaderLink></li>
+		<li><HeaderLink href="/issues"><u>Issues</u></HeaderLink></li>
+		<li><HeaderLink href="/facts"><u>Hypocrisy</u></HeaderLink></li>
+		<li><HeaderLink href="/facts"><u>Propaganda Machine</u></HeaderLink></li>
 		<li><HeaderLink href="/crimes"><u>Media Analysis</u></HeaderLink></li>
 		<li><HeaderLink href="/resources">Resources</HeaderLink></li>
         <li>
 				<details>
-					  <summary>Parent</summary>
+					  <summary>Topics</summary>
           <ul class="p-2">
             <li><HeaderLink href="/blog">Blog</HeaderLink></li>
             <li><HeaderLink href="/blog">Blog</HeaderLink></li>
           </ul>
-					        </details>
+				</details>
         </li>
       </ul>
     </ul>
   </div>
 </div>
 </header>
+
 
 <style>
 	header {
@@ -73,6 +72,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
   z-index: 0;
   display: none;
 }
+li {
+	padding: 10px 20px;
+}
 </style>
 <script>
 const toggleButton = document.getElementById("mobile-menu-btn");
@@ -80,7 +82,8 @@ const targetElement = document.querySelector('.dropdown:is(:not(details)) .dropd
 const overlay = document.getElementById("overlay");
 
 // Add a click event listener to the button
-toggleButton.addEventListener("click", function() {
+toggleButton.addEventListener("click", function(event) {
+ event.stopPropagation();
   // Toggle the visibility style of the target element
   if (targetElement.style.visibility === "hidden") {
 		overlay.style.display = "block"
@@ -91,16 +94,16 @@ toggleButton.addEventListener("click", function() {
 	}
 });
 
-	document.addEventListener("click", function(event) {
-  const menu = document.querySelector(".dropdown:is(:not(details)) .dropdown-content");
-  const targetElement2 = event.target;
+// 	document.addEventListener("click", function(event) {
+// const menu = document.querySelector(".dropdown:is(:not(details)) .dropdown-content, #mobile-menu-btn, summary.astro-3EF6KSR2");
+//   const targetElement2 = event.target;
 
-  // Check if the clicked element is within the menu
-  if (!menu.contains(targetElement2)) {
-    // Clicked outside the menu, do something...
-    targetElement.style.visibility = "hidden";
-  	overlay.style.display = "none"
-  }
-});
+// //   // Check if the clicked element is within the menu
+//   if ((!menu.contains(targetElement2)) || (!targetElement2.classList.contains("astro-3EF6KSR2"))) {
+//     // Clicked outside the menu, do something...
+//     targetElement.style.visibility = "hidden";
+//   	overlay.style.display = "none"
+//   }
+// });
 
 </script>
