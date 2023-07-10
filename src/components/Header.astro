@@ -1,22 +1,61 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
-
+<div id="overlay"></div>
 <header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/myths">Myths</HeaderLink>
-		<HeaderLink href="/facts">Facts</HeaderLink>
-		<HeaderLink href="/crimes">American Crimes</HeaderLink>
-		<HeaderLink href="/resources">Resources</HeaderLink>
-		<HeaderLink href="/about">Dangers</HeaderLink>
-	</nav>
+<div class="navbar">
+  <div class="navbar-start">
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-ghost lg:hidden" id="mobile-menu-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+      </label>
+      <ul tabindex="0" class="menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-100 rounded-box w-52">
+		<li><HeaderLink href="/">Home</HeaderLink></li>
+		<li><HeaderLink href="/blog">Blog</HeaderLink></li>
+		<li><HeaderLink href="/issues"><u>Issues</u></HeaderLink></li>
+			<li><HeaderLink href="/facts"><u>Hypocrisy</u></HeaderLink></li>
+			<li><HeaderLink href="/facts"><u>Propaganda Machine</u></HeaderLink></li>
+		<li><HeaderLink href="/crimes"><u>Media Analysis</u></HeaderLink></li>
+		<li><HeaderLink href="/resources">Resources</HeaderLink></li>
+        <li>
+				<details>
+					  <summary>Parent</summary>
+          <ul class="p-2">
+            <li><HeaderLink href="/blog">Blog</HeaderLink></li>
+            <li><HeaderLink href="/blog">Blog</HeaderLink></li>
+          </ul>
+					        </details>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="navbar-start hidden lg:flex">
+    <ul class="menu-horizontal px-1">
+		<li><HeaderLink href="/">Home</HeaderLink></li>
+		<li><HeaderLink href="/blog">Blog</HeaderLink></li>
+		<li>	<HeaderLink href="/issues"><u>Issues</u></HeaderLink></li>
+			<li><HeaderLink href="/facts"><u>Hypocrisy</u></HeaderLink></li>
+			<li><HeaderLink href="/facts"><u>Propaganda Machine</u></HeaderLink></li>
+		<li><HeaderLink href="/crimes"><u>Media Analysis</u></HeaderLink></li>
+		<li><HeaderLink href="/resources">Resources</HeaderLink></li>
+        <li>
+				<details>
+					  <summary>Parent</summary>
+          <ul class="p-2">
+            <li><HeaderLink href="/blog">Blog</HeaderLink></li>
+            <li><HeaderLink href="/blog">Blog</HeaderLink></li>
+          </ul>
+					        </details>
+        </li>
+      </ul>
+    </ul>
+  </div>
+</div>
 </header>
+
 <style>
 	header {
 		margin: 0em 0 2em;
@@ -24,4 +63,44 @@ import { SITE_TITLE } from '../consts';
 	h2 {
 		margin: 0.5em 0;
 	}
+	#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  z-index: 0;
+  display: none;
+}
 </style>
+<script>
+const toggleButton = document.getElementById("mobile-menu-btn");
+const targetElement = document.querySelector('.dropdown:is(:not(details)) .dropdown-content');
+const overlay = document.getElementById("overlay");
+
+// Add a click event listener to the button
+toggleButton.addEventListener("click", function() {
+  // Toggle the visibility style of the target element
+  if (targetElement.style.visibility === "hidden") {
+		overlay.style.display = "block"
+    targetElement.style.visibility = "visible";
+  } else {
+    targetElement.style.visibility = "hidden";
+  	overlay.style.display = "none"
+	}
+});
+
+	document.addEventListener("click", function(event) {
+  const menu = document.querySelector(".dropdown:is(:not(details)) .dropdown-content");
+  const targetElement2 = event.target;
+
+  // Check if the clicked element is within the menu
+  if (!menu.contains(targetElement2)) {
+    // Clicked outside the menu, do something...
+    targetElement.style.visibility = "hidden";
+  	overlay.style.display = "none"
+  }
+});
+
+</script>
