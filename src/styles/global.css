@@ -1,21 +1,14 @@
-/*
+/* 
   The CSS in this style tag is based off of Bear Blog's default CSS.
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
-html {
-  background-color: #222 !important;
+/* html {
+  background-color: rgb(8, 8, 8) !important;
 }
-body {
-  font-family: Verdana, sans-serif;
-  margin: auto;
 
-  text-align: justify;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  line-height: 1.5;
-}
-main {
+
+/* main {
   padding: 20px;
 }
 h1,
@@ -91,4 +84,17 @@ blockquote {
 .menu li > *:not(ul):not(details).active,
 .menu li > details > summary:active {
   background-color: none !important;
+} */
+
+body {
+  font-family: Verdana, sans-serif;
+  margin: auto;
+  text-align: justify;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  padding: 50px;
+}
+main {
+  padding: 25px;
 }
